@@ -3,508 +3,227 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unstack Studios - Premium Gym & Fitness Solutions</title>
+    <title>Unstack Studio - Building Games, Apps, Brands & Big Ideas</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-green': '#2fb563',
+                        'primary-orange': '#ffae34',
+                        'white': '#ffffff',
+                        'dark-bg': '#0a0a0a',
+                        'accent-dark': '#1a1a1a',
+                        'text-gray': '#a0a0a0',
+                    },
+                    fontFamily: {
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-20px) rotate(180deg)' },
+                        },
+                        pulseGreen: {
+                            '0%, 100%': { 'box-shadow': '0 0 0 0 rgba(47, 181, 99, 0.7)' },
+                            '50%': { 'box-shadow': '0 0 0 10px rgba(47, 181, 99, 0)' },
+                        },
+                        particleFall: {
+                            '0%': { transform: 'translateY(0px)', opacity: '0.3' },
+                            '100%': { transform: 'translateY(100vh)', opacity: '0' },
+                        }
+                    },
+                    animation: {
+                        fadeInUp: 'fadeInUp 1s ease-out forwards',
+                        float: 'float 6s ease-in-out infinite',
+                        pulseGreen: 'pulseGreen 2s infinite',
+                        particleFall: 'particleFall var(--duration) ease-out forwards',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-green: #00ff88;
-            --dark-bg: #0a0a0a;
-            --light-gray: #f5f5f5;
-            --white: #ffffff;
-            --text-gray: #666;
-            --accent-dark: #1a1a1a;
-        }
-
         body {
-            font-family: 'Arial', sans-serif;
-            background: var(--dark-bg);
-            color: var(--white);
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a; /* dark-bg */
+            color: #ffffff; /* white */
             overflow-x: hidden;
+            scroll-behavior: smooth;
         }
 
-        /* Header */
-        .header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-
-        .nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 5%;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: bold;
-            color: var(--primary-green);
-            text-decoration: none;
-            transition: transform 0.3s ease;
-        }
-
-        .logo:hover {
-            transform: scale(1.05);
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-green);
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary-green);
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, var(--dark-bg) 0%, var(--accent-dark) 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 30% 70%, var(--primary-green)20 0%, transparent 50%);
-            opacity: 0.1;
-        }
-
-        .hero-content {
-            text-align: center;
-            z-index: 2;
-            max-width: 800px;
-            padding: 0 2rem;
-        }
-
-        .hero-title {
-            font-size: 4rem;
-            font-weight: bold;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, var(--primary-green), var(--white));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: fadeInUp 1s ease;
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--text-gray);
-            margin-bottom: 2rem;
-            animation: fadeInUp 1s ease 0.2s both;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 1rem 2rem;
-            background: linear-gradient(135deg, var(--primary-green), #00cc6a);
-            color: var(--dark-bg);
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease 0.4s both;
-            box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.4);
-        }
-
-        /* Floating Elements */
-        .floating-element {
-            position: absolute;
-            opacity: 0.1;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-element:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-        .floating-element:nth-child(2) { top: 60%; right: 15%; animation-delay: 2s; }
-        .floating-element:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 4s; }
-
-        /* Services Section */
-        .services {
-            padding: 5rem 5%;
-            background: var(--accent-dark);
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--primary-green);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            color: var(--text-gray);
-            margin-bottom: 4rem;
-            font-size: 1.2rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: linear-gradient(135deg, var(--dark-bg), var(--accent-dark));
-            padding: 2rem;
-            border-radius: 20px;
-            border: 1px solid rgba(0, 255, 136, 0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-green);
-            box-shadow: 0 20px 40px rgba(0, 255, 136, 0.2);
-        }
-
-        .service-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--primary-green);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-            color: var(--dark-bg);
-        }
-
-        .service-title {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--white);
-        }
-
-        .service-description {
-            color: var(--text-gray);
-            line-height: 1.6;
-        }
-
-        /* Portfolio Section */
-        .portfolio {
-            padding: 5rem 5%;
-            background: var(--dark-bg);
-        }
-
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 2rem;
-        }
-
-        .portfolio-item {
-            position: relative;
-            border-radius: 20px;
-            overflow: hidden;
-            height: 300px;
-            background: linear-gradient(135deg, var(--accent-dark), var(--dark-bg));
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .portfolio-item:hover {
-            transform: scale(1.05);
-        }
-
-        .portfolio-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            padding: 2rem;
-            color: var(--white);
-        }
-
-        .portfolio-title {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .portfolio-description {
-            color: var(--text-gray);
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 5rem 5%;
-            background: var(--accent-dark);
-        }
-
-        .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 1rem;
-            background: var(--dark-bg);
-            border: 1px solid rgba(0, 255, 136, 0.3);
-            border-radius: 10px;
-            color: var(--white);
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-green);
-            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--dark-bg);
-            padding: 3rem 5%;
-            text-align: center;
-            border-top: 1px solid var(--accent-dark);
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .nav-links {
-                display: none;
-            }
-            
-            .services-grid,
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Scroll animations */
+        /* Custom scroll-animate class for JS controlled animations */
         .scroll-animate {
             opacity: 0;
             transform: translateY(50px);
-            transition: all 0.6s ease;
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
 
         .scroll-animate.active {
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* Specific styles for gradient text */
+        .gradient-text-green-white {
+            background: linear-gradient(135deg, var(--tw-colors-primary-green), var(--tw-colors-white));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Particle animation styling */
+        .particle {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background-color: var(--tw-colors-primary-green);
+            border-radius: 50%;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 1;
+        }
     </style>
 </head>
-<body>
+<body class="bg-dark-bg text-white font-inter">
+
     <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <a href="#" class="logo">ün=tack studios</a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#portfolio">Portfolio</a></li>
-                <li><a href="#contact">Contact</a></li>
+    <header class="fixed top-0 w-full bg-dark-bg bg-opacity-95 backdrop-blur-xl z-50 transition-all duration-300 ease-in-out py-4 shadow-lg">
+        <nav class="container mx-auto flex justify-between items-center px-6 lg:px-8 max-w-7xl">
+            <a href="index.html" class="text-3xl font-extrabold text-primary-green transition-transform duration-300 hover:scale-105">Unstack Studio</a>
+            <ul class="hidden md:flex space-x-8">
+                <li><a href="#home" class="text-white hover:text-primary-green font-medium relative group">Home<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-green transition-all duration-300 group-hover:w-full"></span></a></li>
+                <li><a href="#services" class="text-white hover:text-primary-green font-medium relative group">Our Work<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-green transition-all duration-300 group-hover:w-full"></span></a></li>
+                <li><a href="sports-pass.html" class="text-white hover:text-primary-orange font-medium relative group">Sports Pass<span class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary-orange transition-all duration-300 group-hover:w-full"></span></a></li>
             </ul>
+            <!-- Mobile Menu Button (Hamburger) -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark-bg bg-opacity-90 py-4">
+            <ul class="flex flex-col items-center space-y-4">
+                <li><a href="#home" class="text-white hover:text-primary-green font-medium text-lg py-2 block">Home</a></li>
+                <li><a href="#services" class="text-white hover:text-primary-green font-medium text-lg py-2 block">Our Work</a></li>
+                <li><a href="sports-pass.html" class="text-white hover:text-primary-orange font-medium text-lg py-2 block">Sports Pass</a></li>
+            </ul>
+        </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="floating-element">💪</div>
-        <div class="floating-element">🏋️</div>
-        <div class="floating-element">⚡</div>
+    <section id="home" class="relative h-screen flex items-center justify-center bg-gradient-to-br from-dark-bg to-accent-dark overflow-hidden">
+        <!-- Floating Elements for Animation -->
+        <div class="absolute top-1/4 left-1/4 w-24 h-24 bg-primary-green rounded-full opacity-10 animate-float" style="animation-delay: 0s;"></div>
+        <div class="absolute bottom-1/3 right-1/4 w-32 h-32 bg-primary-orange rounded-full opacity-10 animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 left-1/2 w-20 h-20 bg-white rounded-full opacity-5 animate-float" style="animation-delay: 4s;"></div>
         
-        <div class="hero-content">
-            <h1 class="hero-title">Unstack Studios</h1>
-            <p class="hero-subtitle">Premium Gym & Fitness Solutions That Transform Spaces</p>
-            <a href="#portfolio" class="cta-button">View Our Projects</a>
+        <div class="z-10 text-center max-w-4xl px-6">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 gradient-text-green-white animate-fadeInUp" style="animation-delay: 0.2s;">Welcome to Unstack Studio</h1>
+            <p class="text-xl md:text-2xl text-text-gray mb-8 animate-fadeInUp" style="animation-delay: 0.4s;">Building Games, Apps, Brands & Big Ideas.</p>
+            <a href="#services" class="inline-block px-8 py-4 bg-primary-green text-dark-bg font-bold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 animate-fadeInUp" style="animation-delay: 0.6s;">
+                Explore Our Services
+            </a>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2 class="section-title scroll-animate">Our Services</h2>
-            <p class="section-subtitle scroll-animate">Comprehensive fitness solutions tailored to your vision</p>
+    <!-- Our Services Section -->
+    <section id="services" class="py-20 bg-accent-dark">
+        <div class="container mx-auto px-6 lg:px-8 max-w-7xl">
+            <h2 class="text-4xl md:text-5xl font-bold text-center mb-4 text-primary-green scroll-animate">Our Services</h2>
+            <p class="text-lg text-center text-text-gray mb-16 scroll-animate">Crafting digital experiences that stand out.</p>
             
-            <div class="services-grid">
-                <div class="service-card scroll-animate">
-                    <div class="service-icon">🏗️</div>
-                    <h3 class="service-title">Gym Design & Construction</h3>
-                    <p class="service-description">Complete gym design and construction services from concept to completion, creating spaces that inspire and motivate.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service Card 1: Game Development -->
+                <div class="bg-dark-bg p-8 rounded-xl shadow-lg border border-primary-green border-opacity-20 hover:border-opacity-80 transition-all duration-300 transform hover:-translate-y-2 scroll-animate">
+                    <div class="text-4xl mb-4 text-primary-orange">🎮</div>
+                    <h3 class="text-2xl font-semibold mb-3 text-white">Game Development</h3>
+                    <p class="text-text-gray">From concept to launch, we create immersive and engaging games for various platforms.</p>
                 </div>
                 
-                <div class="service-card scroll-animate">
-                    <div class="service-icon">⚙️</div>
-                    <h3 class="service-title">Equipment Installation</h3>
-                    <p class="service-description">Professional installation and setup of all fitness equipment with proper spacing and safety considerations.</p>
+                <!-- Service Card 2: Mobile & Web App Development -->
+                <div class="bg-dark-bg p-8 rounded-xl shadow-lg border border-primary-green border-opacity-20 hover:border-opacity-80 transition-all duration-300 transform hover:-translate-y-2 scroll-animate" style="animation-delay: 0.1s;">
+                    <div class="text-4xl mb-4 text-primary-orange">📱</div>
+                    <h3 class="text-2xl font-semibold mb-3 text-white">Mobile & Web App Development</h3>
+                    <p class="text-text-gray">Building intuitive, high-performance applications for iOS, Android, and the web.</p>
                 </div>
                 
-                <div class="service-card scroll-animate">
-                    <div class="service-icon">💡</div>
-                    <h3 class="service-title">Interior Design</h3>
-                    <p class="service-description">Modern, functional interior design that maximizes space efficiency while creating an energizing atmosphere.</p>
+                <!-- Service Card 3: Graphic Design -->
+                <div class="bg-dark-bg p-8 rounded-xl shadow-lg border border-primary-green border-opacity-20 hover:border-opacity-80 transition-all duration-300 transform hover:-translate-y-2 scroll-animate" style="animation-delay: 0.2s;">
+                    <div class="text-4xl mb-4 text-primary-orange">🎨</div>
+                    <h3 class="text-2xl font-semibold mb-3 text-white">Graphic Design</h3>
+                    <p class="text-text-gray">Stunning visual identities, UI/UX design, and branding that captures attention.</p>
                 </div>
                 
-                <div class="service-card scroll-animate">
-                    <div class="service-icon">🔧</div>
-                    <h3 class="service-title">Maintenance & Support</h3>
-                    <p class="service-description">Ongoing maintenance and technical support to keep your facility running at peak performance.</p>
+                <!-- Service Card 4: AR/VR (Coming Soon) -->
+                <div class="bg-dark-bg p-8 rounded-xl shadow-lg border border-primary-green border-opacity-20 hover:border-opacity-80 transition-all duration-300 transform hover:-translate-y-2 scroll-animate" style="animation-delay: 0.3s;">
+                    <div class="text-4xl mb-4 text-primary-orange">🕶️</div>
+                    <h3 class="text-2xl font-semibold mb-3 text-white">AR/VR (Coming Soon)</h3>
+                    <p class="text-text-gray">Exploring the future of immersive experiences with augmented and virtual reality solutions.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio">
-        <div class="container">
-            <h2 class="section-title scroll-animate">Our Gym Projects</h2>
-            <p class="section-subtitle scroll-animate">Transforming fitness visions into reality</p>
-            
-            <div class="portfolio-grid">
-                <div class="portfolio-item scroll-animate">
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Elite Fitness Center</h3>
-                        <p class="portfolio-description">5,000 sq ft modern gym with state-of-the-art equipment and innovative lighting design.</p>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item scroll-animate">
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">PowerHouse Gym</h3>
-                        <p class="portfolio-description">Industrial-style gymnasium featuring heavy-duty equipment and motivational interior design.</p>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item scroll-animate">
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Wellness Studio</h3>
-                        <p class="portfolio-description">Boutique fitness studio with yoga space, premium flooring, and natural lighting integration.</p>
-                    </div>
-                </div>
-                
-                <div class="portfolio-item scroll-animate">
-                    <div class="portfolio-content">
-                        <h3 class="portfolio-title">Community Fitness Hub</h3>
-                        <p class="portfolio-description">Multi-purpose community gym with diverse training areas and accessibility features.</p>
-                    </div>
-                </div>
+    <!-- Featured Project Section: Sports Pass -->
+    <section id="featured-project" class="py-20 bg-dark-bg">
+        <div class="container mx-auto px-6 lg:px-8 max-w-7xl flex flex-col lg:flex-row items-center gap-12">
+            <div class="lg:w-1/2 scroll-animate">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-primary-orange">Featured Project: Sports Pass</h2>
+                <p class="text-lg text-text-gray mb-6">
+                    Sports Pass is our flagship fitness-tech solution, designed to revolutionize access to gyms and sports facilities. It's a unified digital pass simplifying membership management and connecting users to a vast network of fitness opportunities.
+                </p>
+                <a href="sports-pass.html" class="inline-block px-8 py-4 bg-primary-orange text-dark-bg font-bold rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300">
+                    Explore Sports Pass &rarr;
+                </a>
+            </div>
+            <div class="lg:w-1/2 flex justify-center scroll-animate" style="animation-delay: 0.2s;">
+                <!-- Placeholder for Sports Pass Teaser Image/Mockup -->
+                <img src="https://placehold.co/600x400/2fb563/ffffff?text=Sports+Pass+Teaser" alt="Sports Pass Teaser" class="rounded-xl shadow-2xl transform hover:scale-105 transition-transform duration-500">
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title scroll-animate">Start Your Project</h2>
-            <p class="section-subtitle scroll-animate">Ready to transform your fitness space? Let's discuss your vision.</p>
+    <!-- About Us Section -->
+    <section id="about-us" class="py-20 bg-accent-dark">
+        <div class="container mx-auto px-6 lg:px-8 max-w-7xl text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-primary-green scroll-animate">About Unstack Studio</h2>
+            <p class="text-lg text-text-gray mb-12 scroll-animate">Driven by passion, built on innovation.</p>
             
-            <form class="contact-form scroll-animate">
-                <div class="form-group">
-                    <input type="text" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Email Address" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" placeholder="Project Type">
-                </div>
-                <div class="form-group">
-                    <textarea placeholder="Tell us about your project vision..."></textarea>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="cta-button">Send Message</button>
-                </div>
-            </form>
+            <div class="max-w-3xl mx-auto scroll-animate">
+                <img src="The next stop for your online business is here..jpg" alt="Mohammad Umar Sajid" class="rounded-full w-36 h-36 mx-auto mb-6 border-4 border-primary-orange shadow-lg animate-pulseGreen">
+                <h3 class="text-3xl font-semibold mb-4 text-white">Mohammad Umar Sajid, Founder</h3>
+                <p class="text-lg text-text-gray leading-relaxed">
+                    "As a Computer Game Developer, I founded Unstack Studio with a singular vision: to transform ambitious ideas into impactful digital realities. My background in crafting intricate game worlds fuels our creative approach to every project, whether it's a mobile app, a web platform, or a groundbreaking brand identity. We're not just building software; we're building dreams, one innovative solution at a time. Join us on this exciting journey to unstack the impossible."
+                </p>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Unstack Studios. All rights reserved. | Transforming Fitness Spaces Worldwide</p>
+    <footer class="bg-dark-bg py-10 border-t border-accent-dark text-center">
+        <div class="container mx-auto px-6 lg:px-8 max-w-7xl">
+            <p class="text-text-gray mb-6">&copy; 2025 Unstack Studio. All rights reserved.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#" class="text-primary-green hover:text-white transition-colors duration-300 text-2xl" aria-label="GitHub">
+                    <!-- GitHub Icon SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2V11a6 6 0 0 0-1.5-3.8c-.7-.7-1.5-1-2.5-1.2h-.5A7.5 7.5 0 0 0 5 11v3.8a4.8 4.8 0 0 0-1 3.2v4"></path><path d="M17 12c-1.5 0-3-.5-4-1.5V11a6 6 0 0 0-1.5-3.8c-.7-.7-1.5-1-2.5-1.2h-.5A7.5 7.5 0 0 0 5 11v3.8a4.8 4.8 0 0 0-1 3.2v4"></path><path d="M9 18c-2.5 0-5-1.2-5-3s2.5-3 5-3 5 1.2 5 3-2.5 3-5 3z"></path><path d="M12 2C6.5 2 2 6.5 2 12c0 4.4 2.8 8.1 6.7 9.4.5.1.7-.2.7-.4v-1.9c-2.8.6-3.4-1.4-3.4-1.4-.5-1.3-1.2-1.6-1.2-1.6-1-.7.1-.7.1-.7 1.1.1 1.7 1.1 1.7 1.1.9 1.6 2.3 1.1 2.9.8.1-.6.4-1.1.7-1.3-2.2-.2-4.5-1.1-4.5-5 0-1.1.4-2 1-2.7-.1-.2-.4-1.3.1-2.7 0 0 .9-.3 2.8 1.1.8-.2 1.6-.3 2.4-.3.8 0 1.6.1 2.4.3 1.9-1.4 2.8-1.1 2.8-1.1.5 1.4.2 2.5.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.3 4.8-4.5 5 .4.4.8 1.1.8 2.2v3.3c0 .2.2.5.7.4C20.2 20.1 22 16.4 22 12 22 6.5 17.5 2 12 2z"></path></svg>
+                </a>
+                <a href="#" class="text-primary-green hover:text-white transition-colors duration-300 text-2xl" aria-label="LinkedIn">
+                    <!-- LinkedIn Icon SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                </a>
+            </div>
         </div>
     </footer>
 
@@ -523,26 +242,33 @@
             });
         });
 
-        // Header background on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(10, 10, 10, 0.95)';
-            } else {
-                header.style.background = 'rgba(10, 10, 10, 0.95)';
-            }
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
 
-        // Scroll animations
+        // Close mobile menu when a link is clicked
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Scroll animations using Intersection Observer
         const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+            threshold: 0.1, // Trigger when 10% of the element is visible
+            rootMargin: '0px 0px -50px 0px' // Adjust trigger point
         };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
+                    // Optional: Unobserve after animation to prevent re-triggering
+                    observer.unobserve(entry.target);
                 }
             });
         }, observerOptions);
@@ -551,77 +277,38 @@
             observer.observe(el);
         });
 
-        // Interactive service cards
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Portfolio item interactions
-        document.querySelectorAll('.portfolio-item').forEach(item => {
-            item.addEventListener('click', function() {
-                // Add click animation
-                this.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1.05)';
-                }, 100);
-            });
-        });
-
-        // Form submission
-        document.querySelector('.contact-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Animate button on submit
-            const button = this.querySelector('button');
-            const originalText = button.textContent;
-            button.textContent = 'Sending...';
-            button.style.background = 'linear-gradient(135deg, #00cc6a, #00ff88)';
-            
-            setTimeout(() => {
-                button.textContent = 'Message Sent!';
-                setTimeout(() => {
-                    button.textContent = originalText;
-                    button.style.background = 'linear-gradient(135deg, var(--primary-green), #00cc6a)';
-                    this.reset();
-                }, 2000);
-            }, 1500);
-        });
-
-        // Add dynamic background particles
+        // Dynamic background particles
         function createParticle() {
             const particle = document.createElement('div');
-            particle.style.position = 'fixed';
-            particle.style.width = '2px';
-            particle.style.height = '2px';
-            particle.style.background = 'var(--primary-green)';
-            particle.style.borderRadius = '50%';
-            particle.style.opacity = '0.3';
-            particle.style.left = Math.random() * window.innerWidth + 'px';
-            particle.style.top = '-10px';
-            particle.style.pointerEvents = 'none';
-            particle.style.zIndex = '1';
+            particle.classList.add('particle');
             
+            const size = Math.random() * 3 + 1; // Size between 1px and 4px
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            
+            const startX = Math.random() * window.innerWidth;
+            particle.style.left = `${startX}px`;
+            particle.style.top = `-10px`; // Start above the viewport
+            
+            const duration = Math.random() * 4000 + 3000; // Duration between 3s and 7s
+            particle.style.setProperty('--duration', `${duration}ms`);
+
             document.body.appendChild(particle);
             
             const animation = particle.animate([
-                { transform: 'translateY(0px)', opacity: 0.3 },
-                { transform: `translateY(${window.innerHeight + 20}px)`, opacity: 0 }
+                { transform: `translateY(0px) translateX(0px)`, opacity: 0.3 },
+                { transform: `translateY(${window.innerHeight + 20}px) translateX(${(Math.random() - 0.5) * 100}px)`, opacity: 0 }
             ], {
-                duration: Math.random() * 3000 + 2000,
-                easing: 'ease-out'
+                duration: duration,
+                easing: 'ease-out',
+                fill: 'forwards'
             });
             
             animation.onfinish = () => particle.remove();
         }
 
         // Create particles periodically
-        setInterval(createParticle, 300);
+        setInterval(createParticle, 500); // Create a new particle every 500ms
     </script>
 </body>
 </html>
